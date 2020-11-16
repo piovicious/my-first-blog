@@ -1,19 +1,13 @@
-<html>
-    <head>
-      <title>Dupnij wiaderko</title>
-    </head>
-    <body>
-        <div>
-          <h1><a href="/">Twój stary na rowerze - blog turystyczny</a></h1>
-        </div>
+{% extends 'blog/base.html' %}
 
-        {% for post in posts %}
-          <div>
-            <p>opublikowano: {{ post.published_date  }}</p>
-            <h2><a href="">{{ post.title}}</a></h2>
+{% block content %}
+    {% for post in posts %}
+        <div class="post">
+            <div class="date">
+                {{ post.published_date }}
+            </div>
+            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
             <p>{{ post.text|linebreaksbr }}</p>
-          </div>
-        {% endfor %}
-
-    </body>
-</html>
+        </div>
+    {% endfor %}
+{% endblock %}
